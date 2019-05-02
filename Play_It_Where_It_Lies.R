@@ -41,7 +41,7 @@ homeplate_lat <- c(29.756694,33.445000,44.981717,38.622411,41.947908,29.756694,3
 homeplate_lon <- c(-95.355361,-112.066722,-93.278297,-90.193393,-87.655819,-95.355361,-97.082989,-73.926951,-90.193393,-122.201074)
 
 second_base_lat <- c(29.757005,33.445340,44.981718,38.622566,41.948176,29.757005,32.751332,40.829577,38.622566,37.751522)
-second_base_lon <- c(-95.355473,-112.066712,-93.277824,-90.193001,-87.655537,-95.355473,-97.082706,-73.926509,-90.193001,122.200718)
+second_base_lon <- c(-95.355473,-112.066712,-93.277824,-90.193001,-87.655537,-95.355473,-97.082706,-73.926509,-90.193001,-122.200718)
 
 topDistanceBatter$homeplate_lat <- homeplate_lat  
 topDistanceBatter$homeplate_lon <- homeplate_lon  
@@ -53,17 +53,13 @@ topDistanceBatter <- topDistanceBatter %>%
   mutate(ref_distance_lat_127 = second_base_lat-homeplate_lat,
          ref_distance_lon_127 = second_base_lon-homeplate_lon) 
 
-topDistanceBatter %>% 
-  select(ref_distance_lat_127)
-
-
 topDistanceBatter <- topDistanceBatter %>% 
   mutate(ref_units = total_distance/127) %>% 
   mutate(current_lat = homeplate_lat+(ref_units*ref_distance_lat_127)) %>% 
   mutate(current_lon = homeplate_lon+(ref_units*ref_distance_lon_127))
 
-topDistanceBatter
 write.csv(topDistanceBatter, file = "topDistanceBatter2019.csv")
+
 
 
 

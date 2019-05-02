@@ -44,7 +44,7 @@ server <- function(input, output) {
     
     currentPlayer <- topDistanceBatter %>% 
       filter(player_name == input$Player)
-    currentPlayer
+    
     
     m <- leaflet() %>%
       addTiles() %>%  # Add default OpenStreetMap map tiles
